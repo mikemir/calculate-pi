@@ -2,7 +2,7 @@ import math
 import random
 import numpy as np
 from bokeh.plotting import figure, show
-from progress.bar import ChargingBar
+from progress.bar import Bar
 
 
 def graph(points_inside, points_outside):
@@ -18,10 +18,9 @@ def graph(points_inside, points_outside):
 
 
 def throw_needles(quantify, create_chart=False):
-    needles_inside = []
-    needles_outside = []
+    needles_inside = needles_outside = []
 
-    needles_bar = ChargingBar('Tirando agujar:', max=quantify)
+    needles_bar = Bar('Tirando agujas', max=quantify)
     for _ in range(quantify):
         x = random.random() * random.choice([-1, 1])
         y = random.random() * random.choice([-1, 1])
@@ -55,7 +54,7 @@ def generate_estimates(quantify_needles, quantity_intents):
 
     print(estimates)
     print(f'media={avg}')
-    print(f'stdev={np.std(estimates)}')
+    print(f'stdev={std}')
     print(f'needles={quantify_needles}')
     print('=' * 50)
 
