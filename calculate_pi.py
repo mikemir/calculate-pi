@@ -8,17 +8,25 @@ from progress.bar import Bar
 def graph(points_inside, points_outside):
     fig = figure()
 
+    inside_points_bar = Bar('Graficando:', max=len(points_inside))
     for x, y in points_inside:
         fig.asterisk(x, y, size=5, color="red", alpha=0.5)
+        inside_points_bar.next()
 
+    inside_points_bar.finish()
+
+    outside_points_bar = Bar('Graficando:', max=len(points_outside))
     for x, y in points_outside:
         fig.asterisk(x, y, size=5, color="blue", alpha=0.5)
+        outside_points_bar.next()
+
+    outside_points_bar.finish()
 
     show(fig)
 
 
 def throw_needles(quantify, create_chart=False):
-    needles_inside = needles_outside = []
+    needles_inside, needles_outside = [], []
 
     needles_bar = Bar('Tirando agujas', max=quantify)
     for _ in range(quantify):
